@@ -1,4 +1,5 @@
-from core import BaseModel, GuitarType
+from core import BaseModel
+from .guitar_types import GuitarType
 
 
 class Guitar(BaseModel):

@@ -1,4 +1,5 @@
-from core import BaseModel, StringType
+from core import BaseModel
+from .string_types import StringType
 
 
 class GuitarString(BaseModel):

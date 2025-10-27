@@ -1,4 +1,5 @@
-from core import BaseModel, AmpType
+from core import BaseModel
+from .amp_types import AmpType
 
 
 class Amplifier(BaseModel):

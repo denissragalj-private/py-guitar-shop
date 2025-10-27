@@ -1,5 +1,4 @@
 from .commons import BaseModel
-from .amps.amp_types import AmpType
-from .amps import Amplifier
+from .amps import Amplifier, AmpType
 from .guitars import Guitar, GuitarType
-from .accessories import StringType, GuitarString
+from .accessories import GuitarString, StringType
