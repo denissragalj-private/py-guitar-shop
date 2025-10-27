@@ -1,13 +1,14 @@
-from Core.accessories.string_types import StringType
+from core import BaseModel, StringType
 
 
-class GuitarString:
-    def __init__(self, gauge: float, type: StringType):
+class GuitarString(BaseModel):
+    def __init__(self, name: str, gauge: float, type: StringType):
+        super().__init__(name)
         self.gauge = gauge  # in inches
         self.type = type  # e.g., 'nylon', 'steel', 'bronze'
 
     def __repr__(self):
-        return f"GuitarString(gauge={self.gauge}, type='{self.type}')"
+        return f"Guitar String {self.name} ({self.gauge} / {self.type})"
 
     def tension(self, frequency: float, scale_length: float) -> float:
         """

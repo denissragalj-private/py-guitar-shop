@@ -1,5 +1,9 @@
-from core import BaseModel
+from core import Guitar
 
 
-base_model = BaseModel(1, 'Example Model')
-print(base_model)  # Output: Name 'Example Model'
+ibanez = Guitar(name="Ibanez RG", guitar_type=None, number_of_strings=6)
+
+if not ibanez.is_deleted:
+    print(ibanez)
+    print(ibanez.created_at)
+    print(ibanez.updated_at)

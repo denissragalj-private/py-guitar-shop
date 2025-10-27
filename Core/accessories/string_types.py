@@ -2,8 +2,8 @@ from core import BaseModel
 
 
 class StringType(BaseModel):
-    def __init__(self, id: int, name: str):
-        super().__init__(id, name)
+    def __init__(self, name: str):
+        super().__init__(name)
 
     def __repr__(self):
         return f"String type '{self.name}'"
