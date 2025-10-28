@@ -188,23 +188,47 @@ class GuitarDbRepo:
 ```bash
 C:.
 ├── app.py                          # Koristi apsolutne importe
-├── Core/
+        from core import (Guitar,
+                  GuitarType,
+                  Amplifier,
+                  AmpType,
+                  GuitarString,
+                  StringType)
+        from services import GuitarService
+├── core/
 │   ├── __init__.py                 # Eksportira glavne klase
+        from .commons import BaseModel
+        from .amps import Amplifier, AmpType
+        from .guitars import Guitar, GuitarType
+        from .accessories import GuitarString, StringType
 │   ├── guitars/
 │   │   ├── __init__.py
-│   │   ├── guitars.py              # Koristi relativne importe unutar Core
+            from .guitar_types import GuitarType
+            from .guitars import Guitar
+│   │   ├── guitars.py              # Koristi relativne importe unutar core
+            from core import BaseModel
+            from .guitar_types import GuitarType
 │   │   └── guitar_types.py
+                from core import BaseModel
 │   ├── amps/
 │   └── accessories/
 ├── services/
 │   └── guitar_services/
 │       ├── __init__.py
-│       └── guitar_services.py      # Koristi apsolutne importe
+                from .guitar_services import GuitarService
+│       └── guitar_services.py      # Koristi apsolutne importe npr 
+                from core.guitars.guitars import Guitar
 └── infrastructure/
     └── guitar_repos/
         ├── __init__.py
+                from .guitar_file_repo import GuitarFileRepository
+                from .guitar_db_repo import GuitarDatabaseRepository
         └── guitar_db_repo.py       # Koristi apsolutne importe
+                 from core.guitars.guitars import Guitar
+                from infrastructure.guitar_repos.guitar_db_repo import GuitarDatabaseRepository
+#etc...
 ```
+
 
 ## 8. Best practices za tvoj projekt
 
