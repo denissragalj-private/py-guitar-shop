@@ -185,7 +185,7 @@ class GuitarDbRepo:
 
 ## 7. Struktura projekta i pravila
 
-```
+```bash
 C:.
 ├── app.py                          # Koristi apsolutne importe
 ├── Core/
