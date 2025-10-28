@@ -184,6 +184,42 @@ class GuitarDbRepo:
 ```
 
 ## 7. Struktura projekta i pravila
+/**
+ * MyMetod
+ * * hjhjkdhfsajhkj
+ * ! hjkdhfdskjhfk
+ * ? dfdsfsf
+ *  TODO: sdf dsf 
+ * * @param myMetod dfdsfsfsd
+ * ! @return myMetod dsfdsfds
+ * * @return myMetod dsfdsfds
+ * ? @throws myMetod fdfsfsdf
+**/
+
+/
+/
+/
+
+MyMetod
+Ovo je paragraf. Vidljiv je kao običan tekst.
+ # Naslov 1
+ ## Naslov 2
+ * * Ovo je stavka liste (vidljivo kao točka/bullet)
+ * **Ovo je BOLD tekst** (vidljivo kao podebljano)
+ * *Ovo je Italic tekst* (vidljivo kao kurziv)
+ * > Ova linija je prikazana kao Citat/Napomena.
+ * **VAŽNO:** Nešto što želite istaknuti.
+ * [ ] Zadatak koji treba obaviti (vidljivo kao kućica za kvačicu).
+ * Kod blok:
+ ```javascript
+ function MyMetod() {} 
+ ```
+ * **Parametri:**
+  - `@param myMetod`: Opis parametra.
+  - `**@return**`: Opis povratne vrijednosti.
+ 
+
+
 
 ```bash
 C:.
@@ -216,7 +252,7 @@ C:.
 │   └── guitar_services/
 │       ├── __init__.py
                 from .guitar_services import GuitarService
-│       └── guitar_services.py      # Koristi apsolutne importe npr 
+│       └── guitar_services.py      # Koristi apsolutne importe
                 from core.guitars.guitars import Guitar
 └── infrastructure/
     └── guitar_repos/
@@ -260,6 +296,7 @@ C:.
 - **Apsolutni import**: `from Core.guitars.guitars import Guitar` - koristi za importanje između različitih paketa
 - **Relativni import**: `from ..commons import BaseModel` - koristi unutar istog paketa (Core)
 - **__init__.py**: Pojednostavljuje importe i pravi direktorije paketima
-- **Pravilo**: Što je jasniji put, bolje! Izbegavaj komplikovane relativne importe gdje možeš.
+- **Pravilo**: Što je jasniji put, bolje! 
+            Izbegavaj komplikovane relativne importe gdje možeš.
 
-🎸 Tvoja struktura je odlična za apsolutne importe iz app.py!
+🎸 Struktura za apsolutne importe iz app.py!
