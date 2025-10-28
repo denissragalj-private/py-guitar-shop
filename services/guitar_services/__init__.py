@@ -1,1 +1,1 @@
-from .guitar_services import GuitarService
+from services.guitar_services import GuitarService
