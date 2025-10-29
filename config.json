@@ -1,0 +1,5 @@
+{
+    "debug": true,
+    "database_url": "sqlite:///guitar_shop.db",
+    "repo_type": "file"
+}

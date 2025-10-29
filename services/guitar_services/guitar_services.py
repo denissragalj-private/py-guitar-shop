@@ -1,16 +1,19 @@
+from config import AppConfig
 from core.guitars.guitars import Guitar
+from infrastructure.guitar_repos.guitar_repo import GuitarRepo
 
 
 class GuitarService:
-    def __init__(self):
+    def __init__(self, app_config: AppConfig):
         self.guitars = []
+        self.app_config = app_config
         # prop to initialize database connection or any storage mechanism
-        # repository = DatabaseRepository()
+        self.repo = GuitarRepo(app_config.repo_type)
 
     def create_guitar(self, guitar: Guitar):
-        self.guitars.append(guitar)
-        # Save to database or any storage mechanism
-        return guitar
+        # Nakon sto se doda u bazu, objekt dobije ID pa se vrati
+        # kako bi se nastavio koristiti u aplikaciji
+        return self.repo.save_guitar(guitar)
 
     def get_guitar(self, guitar_id: int, is_deleted: bool = False):
         for guitar in self.guitars:

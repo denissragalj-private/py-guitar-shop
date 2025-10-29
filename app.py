@@ -1,3 +1,5 @@
+import json
+
 from core import (Guitar,
                   GuitarType,
                   Amplifier,
@@ -5,42 +7,53 @@ from core import (Guitar,
                   GuitarString,
                   StringType)
 from services import GuitarService
+from config import AppConfig
+from constants import REPO_TYPE_FILE, CONFIG_FILE_PATH
 
 
-guitar_service = GuitarService()
+def load_config(file_path: str) -> AppConfig:
+    try:
+        with open(file_path, 'r') as file_reader:
+            config_data = dict(json.load(file_reader))
+
+        return AppConfig(
+            debug=config_data.get('debug', False),
+            database_url=config_data.get('database_url', ''),
+            repo_type=config_data.get('repo_type', REPO_TYPE_FILE)
+        )
+
+    except FileNotFoundError:
+        print(f"Configuration file not found: {file_path}")
+        return None
+
+    except json.JSONDecodeError:
+        print(f"Error decoding JSON from config file: {file_path}")
+        return None
+
+    except Exception as ex:
+        print(f"An unexpected error occurred: {ex}")
+        return None
 
 
-electric_guitar = GuitarType(name="Electric")
-ibanez = Guitar(name="Ibanez RG",
-                guitar_type=electric_guitar,
-                number_of_strings=6)
-guitar_service.create_guitar(ibanez)
-guitar_from_db = guitar_service.get_guitar(5)
+def main():
+    # ucitavanje konfiguracije iz fajla
+    app_config = load_config(CONFIG_FILE_PATH)
+    if app_config is None:
+        print("Failed to load application configuration. Exiting.")
+        return
 
-if not ibanez.is_deleted:
-    print(ibanez)
-    print(ibanez.created_at)
-    print(ibanez.updated_at)
-    print(ibanez.guitar_type.name)
+    guitar_service = GuitarService(app_config)
 
+    electric_guitar = GuitarType(name="Electric")
+    ibanez = Guitar(name="Ibanez RG",
+                    guitar_type=electric_guitar,
+                    number_of_strings=6)
+    ibanez = guitar_service.create_guitar(ibanez)
 
-amp_type = AmpType(name="Tube")
-fender_amp = Amplifier(name="Fender Twin Reverb",
-                       amp_type=amp_type,
-                       power=60)
-if not fender_amp.is_deleted:
-    print(fender_amp)
-    print(fender_amp.created_at)
-    print(fender_amp.updated_at)
-    print(fender_amp.amp_type.name)
+    fender = Guitar(name="Fender Stratocaster",
+                    guitar_type=electric_guitar,
+                    number_of_strings=6)
+    fender = guitar_service.create_guitar(fender)
 
-
-string_type = StringType(name="Electric Guitar Strings")
-guitar_string = GuitarString(name="Ernie Ball Regular Slinky",
-                             gauge=0.010,
-                             type=string_type)
-if not guitar_string.is_deleted:
-    print(guitar_string)
-    print(guitar_string.created_at)
-    print(guitar_string.updated_at)
-    print(guitar_string.type.name)
+if __name__ == "__main__":
+    main()
